@@ -37,4 +37,8 @@ public class Card extends Button {
     public Color getColor(){
         return storedColor;
     }
+
+    public void FlipBack(){
+        setBackground(originalColor);
+    }
 }

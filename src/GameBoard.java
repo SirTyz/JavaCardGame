@@ -18,7 +18,10 @@ public class GameBoard extends JPanel {
     public GameBoard(){
         setLayout(new GridLayout(ROWS,COLUMNS));
         InitializeGameBoard();
+    }
 
+    public void CardClicked(Card card){
+        card.FlipBack();
     }
 
     private void InitializeGameBoard() {
@@ -30,22 +33,53 @@ public class GameBoard extends JPanel {
 
                 Color backColor = Color.getHSBColor(r, g, b);
 
-                Card newCard = new Card(this, "", backColor);
-
-                if (column % 2 == 0) {
-                    cells[row][column] = newCard;
-                    oldCard = newCard;
-                    add(newCard);
-                }
-                else {
-                    cells[row][column] = oldCard;
-                    newCard = oldCard;
-                }
-                add(newCard);
+                Card newCard1 = new Card(this, "", backColor);
+                Card newCard2 = new Card(this, "", backColor);
+                add(newCard1);
+                cells[row][column] = newCard1;
+                column++;
+                add(newCard2);
+                cells[row][column] = newCard2;
 
             }
         }
-/*
+
+        for(int r = 0; r < ROWS; r++){
+            for(int c = 0; c < COLUMNS; c++) {
+                int r1 = rand.nextInt(BOARDSIZE);
+                int c1 = rand.nextInt(BOARDSIZE);
+
+                while(shuffledCells[r1][c1] != null){
+                    r1 = rand.nextInt(BOARDSIZE);
+                    c1 = rand.nextInt(BOARDSIZE);
+                }
+                shuffledCells[r1][c1] = cells[r][c];
+            }
+        }
+
+    }
+
+
+    public void StartOver(){
+        for (int row = 0; row < ROWS; row++) {
+            for (int column = 0; column < COLUMNS; column++) {
+                int r = rand.nextInt(256);
+                int g = rand.nextInt(256);
+                int b = rand.nextInt(256);
+
+                Color backColor = Color.getHSBColor(r, g, b);
+
+                Card newCard1 = new Card(this, "", backColor);
+                Card newCard2 = new Card(this, "", backColor);
+
+                cells[row][column].setBackground(newCard1.getColor());
+                column++;
+                cells[row][column].setBackground(newCard2.getColor());
+
+            }
+        }
+
+        /*
         for(int r = 0; r < ROWS; r++){
             for(int c = 0; c < COLUMNS; c++) {
                 int r1 = rand.nextInt(BOARDSIZE);
