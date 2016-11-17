@@ -12,6 +12,8 @@ public class GameBoard extends JPanel {
 
     private Card[][] cells = new Card[ROWS][COLUMNS];
     private Card[][] shuffledCells = new Card[ROWS][COLUMNS];
+    private Card card1 = null;
+    private Card card2 = null;
     private Random rand = new Random();
 
     public GameBoard(){
@@ -20,7 +22,24 @@ public class GameBoard extends JPanel {
     }
 
     public void CardClicked(Card card){
-        card.FlipBack();
+        if (card1 == null) {
+            card1 = card;
+        }
+        else if(card2 == null) {
+            card2 = card;
+            if(card1.getColor() == card2.getColor()){
+                remove(card1);
+                remove(card2);
+                card1 = null;
+                card2 = null;
+            }
+            else{
+                card1.flipBack();
+                card2.flipBack();
+                card1 = null;
+                card2 = null;
+            }
+        }
     }
 
     private void InitializeGameBoard() {
