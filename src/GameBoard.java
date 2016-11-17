@@ -13,7 +13,6 @@ public class GameBoard extends JPanel {
     private Card[][] cells = new Card[ROWS][COLUMNS];
     private Card[][] shuffledCells = new Card[ROWS][COLUMNS];
     private Random rand = new Random();
-    private Card oldCard;
 
     public GameBoard(){
         setLayout(new GridLayout(ROWS,COLUMNS));

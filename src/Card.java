@@ -27,6 +27,7 @@ public class Card extends Button {
                             setBackground(backColor);
                         }
                         Card card = (Card)e.getSource();
+                        card.gameBoard.CardClicked(card);
                     }
                 }
 
