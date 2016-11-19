@@ -34,8 +34,8 @@ public class GameBoard extends JPanel {
                 card2 = null;
             }
             else{
-                card1.flipBack();
-                card2.flipBack();
+                card1.FlipBack();
+                card2.FlipBack();
                 card1 = null;
                 card2 = null;
             }
@@ -53,11 +53,12 @@ public class GameBoard extends JPanel {
 
                 Card newCard1 = new Card(this, "", backColor);
                 Card newCard2 = new Card(this, "", backColor);
-                add(newCard1);
+
                 cells[row][column] = newCard1;
+                add(newCard1);
                 column++;
-                add(newCard2);
                 cells[row][column] = newCard2;
+                add(newCard2);
 
             }
         }
@@ -71,7 +72,15 @@ public class GameBoard extends JPanel {
                     r1 = rand.nextInt(BOARDSIZE);
                     c1 = rand.nextInt(BOARDSIZE);
                 }
-                shuffledCells[r1][c1] = cells[r][c];
+                Card newCard3 = new Card(this,"",cells[r][c].getColor());
+                shuffledCells[r1][c1] = newCard3;
+            }
+        }
+
+        for(int R = 0; R < ROWS; R++){
+            for(int C = 0; C < COLUMNS; C++) {
+
+                cells[R][C].setBackground(shuffledCells[R][C].getColor());
             }
         }
 

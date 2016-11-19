@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by Tyler Cox on 11/16/2016.
  */
 public class Card extends Button {
-    public Color originalColor;
+    public Color originalColor = getBackground();
     private final GameBoard gameBoard;
     private Color storedColor;
 
@@ -32,7 +32,6 @@ public class Card extends Button {
                 }
 
         );
-        originalColor = getBackground();
     }
 
     public Color getColor(){
